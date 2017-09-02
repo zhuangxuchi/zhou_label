@@ -1,0 +1,140 @@
+nav{
+    font-weight: bold;
+    border-top:4px solid #1da793;
+    position: relative;
+    width: 1280px;
+    /*border:1px solid;*/
+    height: 90px;
+}
+nav .logo{
+    display: inline-block;
+    font-size: 24px;
+    font-weight:800;
+    margin:20px 0 0 40px;
+    /*border:1px solid;*/
+}
+nav .mobile{
+    display: none;
+}
+nav .pc{
+    position: absolute;
+    left: 420px;
+    top: 0px;
+
+}
+nav .mobile li,nav .pc li{
+    float: left;
+}
+nav .pc li a{
+    padding:0px 26px;
+    line-height: 46px;
+    font-size: 16px;
+    text-align: center;
+    margin:0;
+}
+nav .mobile li:hover,nav .pc li:hover{
+    border-bottom:2px solid #c1c1c1;
+}
+nav .mobile li a:hover,nav .pc li a:hover{
+    color: #ee805e;
+}
+
+nav .mobile{
+
+}
+
+img{
+    width: 1280px;
+}
+
+
+
+/**************************************************************/
+/*********文章网页的所有样式**************************************/
+/**************************************************************/
+.letter_header{
+    width: 1280px;
+    height: 200px;
+    background-color: #e6e6e6;
+
+    text-align: center;
+}
+.letter_header h1{
+    margin-top: 60px;
+    color: #31424e;
+}
+.letter_header p{
+    color: #6b6b73;
+}
+.letter_header h1,.letter_header p{
+    display: inline-block;
+}
+
+/*正文*/
+/*设置固定宽度，内部用绝对定位，
+不会因为尺寸变小而，排版乱*/
+.letter_info{
+    width: 1280px;
+    position: relative;
+}
+
+.letter_info .left{
+    width: 736px;
+    background-color: #f7f7f7;
+    position: absolute;
+    top: 50px;
+    left: 100px;
+}
+.letter_info .left img{
+    width: 100%;
+    height: 374px;
+}
+.letter_info .left p{
+    color: #6a6a73;
+    font-family: Arial;
+    font-size: 16px;
+}
+/*右边的文章目录栏*/
+.letter_info .right{
+    width: 185px;
+    position: absolute;
+    right: 80px;
+    top: 50px;
+    background-color: #ffffff;
+    padding: 25px;
+    border-radius: 5px;
+    border:1px solid #e9e9e9;
+    text-align: center;
+}
+.letter_info .right img{  width: 80px;  }
+.letter_info .right p{
+    color: #84848f;
+    font-size: 18px;
+    font-weight:bold;
+}
+.letter_info .right input{
+    background-color: #ee5b2e;
+    border:transparent;
+    padding:5px 15px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 15px;
+    color: #f1f1f1;
+    margin-bottom: 20px;
+}
+.letter_info .right ul li:first-child{
+    border-top:1px solid #cccccc;
+    padding-top: 20px;
+}
+.letter_info .right ul li{
+    text-align: left;
+    padding:10px 0;
+    border-bottom: 1px solid #cccccc;
+}
+.letter_info .right ul li:last-child{
+    border-bottom: transparent;
+}
+
+
+
+
