@@ -1,8 +1,11 @@
+body{
+    width: 1280px;
+}
 nav{
     font-weight: bold;
     border-top:4px solid #1da793;
     position: relative;
-    width: 1280px;
+    /*width: 1280px;*/
     /*border:1px solid;*/
     height: 90px;
 }
@@ -19,7 +22,7 @@ nav .mobile{
 nav .pc{
     position: absolute;
     left: 420px;
-    top: 0px;
+    top: 10px;
 
 }
 nav .mobile li,nav .pc li{
@@ -122,6 +125,10 @@ img{
     color: #f1f1f1;
     margin-bottom: 20px;
 }
+.letter_info .right input:hover{
+    background-color: #dc542b;
+    color: #f0f0f0;
+}
 .letter_info .right ul li:first-child{
     border-top:1px solid #cccccc;
     padding-top: 20px;
@@ -134,7 +141,9 @@ img{
 .letter_info .right ul li:last-child{
     border-bottom: transparent;
 }
-
+.letter_info .right ul li a:hover{
+    color: #ee805e;
+}
 
 
 
