@@ -134,8 +134,8 @@
 		<div class="content">
 			<header class="codrops-header">
 				<div class="codrops-links">
-					<a class="codrops-icon codrops-icon--prev" href="#" title="Previous Demo"><svg class="icon icon--arrow"><use xlink:href="#icon-arrow"></use></svg></a>
-					<a class="codrops-icon codrops-icon--drop" href="#" title="Back to the article"><svg class="icon icon--drop"><use xlink:href="#icon-drop"></use></svg></a>
+					<a class="codrops-icon codrops-icon--prev "id="useless1" href="#" title="Previous Demo"><svg class="icon icon--arrow"><use xlink:href="#icon-arrow"></use></svg></a>
+					<a class="codrops-icon codrops-icon--drop "id="useless2"  href="#" title="Back to the article"><svg class="icon icon--drop"><use xlink:href="#icon-drop"></use></svg></a>
 				</div>
 				<h1 class="codrops-header__title">羊崽和大妞</h1>
 				<button class="btn btn--info btn--toggle">
@@ -148,7 +148,7 @@
 				</button>
 				<div class="overlay overlay--menu">
 					<ul class="menu">
-						<li class="menu__item menu__item--current"><a style="color: #dba9a6;" class="menu__link" href="#">This is us</a></li>
+						<li class="menu__item menu__item--current"><a style="color: #6f8ebc;" class="menu__link" href="#">Cause seeing you makes me feel living grace.that if there was a forever I would spend with you </a></li>
 					</ul>
 				</div>
 				<div class="overlay overlay--info">
@@ -225,6 +225,16 @@
 				<div></div>
 			</div>
 		</div>
+
+        <script>
+            var info1 = document.getElementById('useless1');
+            var info2 = document.getElementById('useless2');
+            info1.onclick = fn1;
+            info2.onclick = fn1;
+            function fn1(){
+              alert("这个按钮没用的～")
+            }
+        </script>
 		<script src="js/anime.min.js"></script>
 		<script src="js/imagesloaded.pkgd.min.js"></script>
 		<script src="js/main.js"></script>
