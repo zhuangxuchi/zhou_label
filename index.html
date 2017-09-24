@@ -123,22 +123,26 @@
 
     const phrases = [
         '今天',
-//
-
+        '天气很冷',
+        '要照顾自己哦',
+        '不要让自己感冒了',
+        '听到了吗',
+        '周小文说的',
+        '～～～～～'
     ];
 
-    const el = document.querySelector('.text')
-    const fx = new TextScramble(el)
+    const el = document.querySelector('.text');
+    const fx = new TextScramble(el);
 
     let counter = 0;
     const next = () => {
         fx.setText(phrases[counter]).then(() => {
-            if(counter < 1){
+            if(counter < 7){
                 setTimeout(next, 800);
             }
             else {
                 setTimeout(function(){console.log(0);},1000);
-              enter();
+//              enter();
 //              setTimeout(function(){alert(1);},1000);
             }
         });
