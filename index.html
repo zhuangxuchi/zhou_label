@@ -123,14 +123,10 @@
 
     const phrases = [
 
-      '哎',
-      '',
-      '',
-      '',
-      '',
-      '',
-      '',
-
+      '冰冰学姐啊',
+      '好好的',
+      '努力的',
+      '发奋敲代码啊'
     ];
 
     const el = document.querySelector('.text');
@@ -139,7 +135,7 @@
     let counter = 0;
     const next = () => {
         fx.setText(phrases[counter]).then(() => {
-            if(counter < 33){
+            if(counter < 4){
                 setTimeout(next, 1000);
             }
             else {
