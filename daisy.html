@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        a{
+            list-style:none;
+            text-decoration: none;
+            font-weight:bold;
+            color: #8a8a8a;
+        }
+        a:hover{
+            border:transparent;
+            outline:none;
+            /*取消虚线框*/
+        }
+        html, body{
+            background-color: #f0d6d7;
+            height:100%;
+        }
+        .container{
+            padding:0;
+
+            position: absolute;
+            top: -30px;
+            height:100%;
+            width:100%;
+            justify-content:center;
+            align-items:center;
+            display:flex;}
+        .text{
+            /*文字*/
+            padding:0;
+            font-weight:bold;
+            font-size:50px;
+            color: #656565;
+        }
+        .dud{
+            color:#757575;}
+        button{
+            color: #FFFFFF;
+            font-size: 20px;
+            padding:20px 90px;
+            background-color: #ea9f96;
+            border-radius:5px;
+            position: absolute;
+            top: 390px;
+            border:transparent;
+            left:40%;
+        }
+    </style>
+</head>
+
+<body style="background-color:#f0d6d7;height:100%;">
+<div class="container">
+    <!--<button>sdsf</button>-->
+    <div class="text"></div>
+</div>
+
+
+
+
+<script>
+    // ——————————————————————————————————————————————————
+    // TextScramble
+    // ——————————————————————————————————————————————————
+
+    class TextScramble {
+        constructor(el) {
+            this.el = el
+            this.chars = '!<>-_\\/[]{}—=+*^?#________'
+            this.update = this.update.bind(this)
+        }
+        setText(newText) {
+            const oldText = this.el.innerText
+            const length = Math.max(oldText.length, newText.length);
+            const promise = new Promise((resolve) => this.resolve = resolve)
+            this.queue = []
+            for (let i = 0; i < length; i++) {
+                const from = oldText[i] || ''
+                const to = newText[i] || ''
+                const start = Math.floor(Math.random() * 40)
+                const end = start + Math.floor(Math.random() * 40)
+                this.queue.push({ from, to, start, end })
+            }
+            cancelAnimationFrame(this.frameRequest)
+            this.frame = 0
+            this.update()
+            return promise
+        }
+        update() {
+            let output = ''
+            let complete = 0
+            for (let i = 0, n = this.queue.length; i < n; i++) {
+                let { from, to, start, end, char } = this.queue[i]
+                if (this.frame >= end) {
+                    complete++
+                    output += to
+                } else if (this.frame >= start) {
+                    if (!char || Math.random() < 0.28) {
+                        char = this.randomChar()
+                        this.queue[i].char = char
+                    }
+                    output += `<span class="dud">${char}</span>`
+                } else {
+                    output += from
+                }
+            }
+            this.el.innerHTML = output
+            if (complete === this.queue.length) {
+                this.resolve()
+             } else {
+                this.frameRequest = requestAnimationFrame(this.update)
+                this.frame++
+            }
+        }
+        randomChar() {
+            return this.chars[Math.floor(Math.random() * this.chars.length)]
+        }
+    }
+
+    const phrases = [
+
+        '好久不见',
+        '可能"见"这个字',
+        '用的不太恰当',
+        '哈哈',
+        '但是真的谢谢你还念我',
+        '勺子',
+    ];
+
+    const el = document.querySelector('.text');
+    const fx = new TextScramble(el);
+
+    let counter = 0;
+    const next = () => {
+        fx.setText(phrases[counter]).then(() => {
+            if(counter < 4){
+                setTimeout(next, 1000);
+            }
+            else {
+                setTimeout(function(){console.log(0);},1000);
+//              enter();
+//              setTimeout(function(){alert(1);},1000);
+            }
+        });
+//        counter = (counter + 1) % phrases.length
+//        if(counter < 2) {
+        counter = counter + 1;
+//        }
+
+//        alert(1);
+    };
+    function enter(){
+
+        var start = document.getElementById('start');
+        var btn1 = document.createElement('button');
+        var a1 = document.createElement('a');
+        a1.href = "https://thomaszhou63.github.io/zhou_label/main.html";
+        a1.innerHTML = '进入网页';
+//      btn1.innerHTML = '进入网页';
+        btn1.appendChild(a1);
+//      start.appendChild(btn1);
+        document.body.appendChild(btn1);
+//      alert(1);
+    }
+
+    next()
+</script>
+</body>
+</html>
