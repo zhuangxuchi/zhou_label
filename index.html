@@ -149,8 +149,7 @@
         '那就来我学校取圣诞礼物吧',
         '如果',
         '如果你不喜欢我了',
-        '那就做普通朋友吧',
-        '周博文'
+        '那就做普通朋友吧'
     ];
 
     const el = document.querySelector('.text');
@@ -159,7 +158,7 @@
     let counter = 0;
     const next = () => {
         fx.setText(phrases[counter]).then(() => {
-            if(counter < 28){
+            if(counter < 27){
                 setTimeout(next, 1000);
             }
             else {
