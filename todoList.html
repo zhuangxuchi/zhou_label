@@ -1,0 +1,146 @@
+<template>
+	<div class="ex1">
+		<div class="input-text">
+			<label for="inputNum">请输入：</label>
+			<!--@keydow.13表示回车的事件-->
+			<!--v-model是为了让输入的数据和inputItem.content同步-->
+			<input type="text"
+						 id="inputNum"
+						 name="inputNum"
+						 placeholder="edit.."
+						 @keydown.13="addItem"
+						 v-model="inputItem.content"
+						 class="edit"
+			>
+
+			<!--列表内容-->
+			<ul class="task">
+				<li v-for="(item, index) in inputList">
+					<input type="checkbox"
+								 :checked="item.finished"
+								 @click="changeState(index)"
+					>
+
+					<!--通过item.finished值来动态绑定class-->
+					<span :class="{'finish':item.finished}">{{item.content}}</span>
+					<button @click="deleteItem(index)"
+									class="del"
+									:class="{'native':item.finished === true}"
+					>{{isDel}}</button>
+				</li>
+			</ul>
+
+			<p  class="empty" v-if="!inputList.length">暂无内容</p>
+
+		</div>
+	</div>
+</template>
+
+<script>
+  export default {
+    data () {
+      return {
+        inputList: [],
+				/*
+				 为什么我们要对inputItem再次初始化？
+
+				 解答：因为每次在输入框中输入数据，都会同时改变inputItem的content属性，
+				 然后我们点击回车，该inputItem的整个对象都添加进inputList中，
+				 按正常逻辑来说，inputList内的内容和inputItem是没有联系了。
+				 如果我们此时不对inputItem进行再次初始化，那么就会发现你再次在输入框中输入数据的时候，
+				 会同时改变下面的list的值，简易你们把初始化的代码去掉，运行下试试看！
+				 */
+        inputItem: {
+          content: '',
+          finished: false,
+          deleted: false
+        },
+        isDel: '操作'
+      }
+    },
+    methods: {
+      addItem: function () {
+        this.inputList.push(this.inputItem);
+        this.inputItem = {
+          content: '',
+          finished: false,
+          deleted: false
+        };
+
+
+      },
+      //改变选中状态
+      changeState: function (index) {
+        //this.inputList[index].finished = true 错误：这样如果点击第二次，无法回到false，就会一直true状态
+        this.inputList[index].finished = !this.inputList[index].finished;
+        if (this.inputList[index].finished) {
+          this.isDel = '删除'
+        }else {
+          this.isDel = '操作'
+        }
+
+      },
+      //删除列表元素
+      deleteItem: function (index) {
+        //        console.log('true');
+        if (this.inputList[index].finished) {
+          this.inputList.splice(index,1);
+        }
+      }
+    }
+  }
+</script>
+
+<style scope >
+	.input-text{
+		margin:0 auto;
+		width: 600px;
+	}
+	.edit{
+		/*display:block ;*/
+		line-height: 35px;
+		box-sizing: border-box;
+		padding-left: 20px;
+		border-radius: 4px;
+		border:1px solid #ccc;
+		box-shadow: 0 0 5px #ccc;
+	}
+	.task {
+		margin:0 auto;
+	}
+	.task li{
+		position: relative;
+		padding: 10px 0;
+		border-bottom: 1px solid #efefef;
+		list-style: none;
+	}
+
+	.task li:last-child{
+		border-bottom: 0;
+	}
+	.finish{
+		text-decoration: line-through;
+		color: #ccc;
+	}
+	.del{
+		background: #1696ff;
+		text-decoration: none;
+		position: absolute;
+		right:10%;
+		font-size: 12px;
+		border: 0;
+		outline: 0;
+		padding: 2px 5px;
+		border-radius: 5px;
+		color: #fff;
+	}
+	.native {
+		background: #e21826;
+	}
+	.empty{
+		font-size: 18px;
+		color: #b1b1b1;
+		text-align: center;
+		padding: 10px 0;
+	}
+</style>
