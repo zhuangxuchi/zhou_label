@@ -5,6 +5,10 @@
     <meta charset="UTF-8">
     <title></title>
     <style>
+			* {
+				margin:0;
+				padding:0;
+			}
         a{
             list-style:none;
             text-decoration: none;
@@ -39,21 +43,38 @@
         }
         .dud{
             color:#757575;}
-        button{
-            color: #FFFFFF;
-            font-size: 20px;
-            padding:20px 90px;
-            background-color: #ea9f96;
-            border-radius:5px;
-            position: absolute;
-            top: 390px;
-            border:transparent;
-            left:40%;
-        }
+
+				.name {
+					color: #8a8a8a;
+					font-size: 30px;
+					font-weight:bold;
+					position: relative;
+					width: 260px;
+					position: absolute;
+					left:26% ;
+					top:28%;
+					/*padding:0;*/
+				}
+				.name span {
+					color: #8a8a8a;
+					display: inline-block;
+					padding:0;
+					margin-right: 10px;
+				}
+				.name span:first-child {
+					font-size: 60px;
+					font-weight:bold;
+					/*display: inline-block;*/
+				}
+			  .name span:nth-child(2) {
+					font-size: 30px;
+				}
     </style>
 </head>
 
 <body style="background-color:#f0d6d7;height:100%;">
+<div class="name"><span>T</span><span>o:</span>小可爱</div>
+
 <div class="container">
     <!--<button>sdsf</button>-->
     <div class="text"></div>
@@ -122,34 +143,59 @@
     }
 
     const phrases = [
+      '呐',
+      '这是啥呢？',
+      '这是我为你写的一个小东西',
+      '没有图片',
+      '没有视频',
+      '只有文字',
+      '包含了我想对你说的一些话',
+      'em。。。。',
+      '那我开始了哈',
+      '小可爱',
+      '刚和你认识的时候呢',
+      '就聊的很投机',
+      '然后就聊呀聊呀～',
+      '然后嘞～我们就见面了',
+      '而且是在你家',
+      '话说，你这个家伙是不是没有防备心啊',
+      '这么轻易让一个陌生男人来你家',
+      '怕是真的是一个小傻子～',
+      '还记得第一次见你的样子',
+      '真好看～～～',
+      '虽然你一直低着头',
+      '不敢正面看我',
+      '其实。。',
+      '跟你说句实话吧',
+			'',
+			'',
+      '紧张我会说什么吗？？？',
+      '哈哈哈哈',
+			'那我说了哈！',
+      '我就是喜欢这个小姑娘！',
+      '（接下来很污，高能预警！！污污污污污）',
+      '我想你做我女朋友',
+      '现在也想',
+      '但是因为距离',
+      '你选择了另一个人',
+      '我希望你半年内不要和他发生关系',
+      '你答应我了',
+      '我是自私的',
+      '我想一直对你好',
+			'我不想他对你好',
+			'而且',
+			'我还想通过啪啪啪让你离不开我',
+			'我想让你因为这个离不开我',
+			'如果白天对你好',
+			'晚上还能一起爽',
+			'那，你就我的小娘子了把～',
+			'我的小娘子',
+			'闻轩仪',
+			'我爱你~~',
+			'2019你要快乐～',
+			'但是快乐都是因为我',
+			'爱你～',
 
-      '王小可爱',
-        '我要和你说四件事',
-        '第一',
-        '我今天和我前女友谈了',
-        '我拒绝了复合',
-        '第二',
-        '2017年12月3号',
-        '那天晚上',
-        '我说话太重了',
-        '对不起',
-        '对 不 起',
-        '对  不  起',
-        '要不... ...',
-        '我请你吃亲嘴烧吧～',
-        '第三',
-        '重要的事情说三遍',
-        '你不是备胎',
-        '你不是备胎',
-        '你不是备胎',
-        '第四',
-        '如果',
-        '我说如果啊',
-        '如果你还喜欢我',
-        '那就来我学校取圣诞礼物吧',
-        '如果',
-        '如果你不喜欢我了',
-        '那就做普通朋友吧'
     ];
 
     const el = document.querySelector('.text');
@@ -158,11 +204,14 @@
     let counter = 0;
     const next = () => {
         fx.setText(phrases[counter]).then(() => {
-            if(counter < 27){
-                setTimeout(next, 1000);
+            if(counter < 52){
+                setTimeout(next, 1200);
+                if (counter > 30) {
+                  setTimeout(next, 2000);
+								}
             }
             else {
-                setTimeout(function(){console.log(0);},1000);
+                setTimeout(function(){console.log(0);},1200);
 //              enter();
 //              setTimeout(function(){alert(1);},1000);
             }
