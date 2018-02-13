@@ -5,28 +5,30 @@
 			<!--@keydow.13表示回车的事件-->
 			<!--v-model是为了让输入的数据和inputItem.content同步-->
 			<input type="text"
-						 id="inputNum"
-						 name="inputNum"
-						 placeholder="edit.."
-						 @keydown.13="addItem"
-						 v-model="inputItem.content"
-						 class="edit"
+				   id="inputNum"
+				   name="inputNum"
+				   placeholder="edit.."
+				   @keydown.13="addItem"
+				   v-model="inputItem.content"
+				   class="edit"
 			>
 
 			<!--列表内容-->
 			<ul class="task">
 				<li v-for="(item, index) in inputList">
 					<input type="checkbox"
-								 :checked="item.finished"
-								 @click="changeState(index)"
+						   :checked="item.finished"
+						   @click="changeState(index)"
 					>
 
 					<!--通过item.finished值来动态绑定class-->
 					<span :class="{'finish':item.finished}">{{item.content}}</span>
 					<button @click="deleteItem(index)"
-									class="del"
-									:class="{'native':item.finished === true}"
-					>{{isDel}}</button>
+						    class="del"
+							:class="{'native':item.finished === true}"
+					>
+					{{isDel}}
+					</button>
 				</li>
 			</ul>
 
@@ -50,13 +52,13 @@
 				 如果我们此时不对inputItem进行再次初始化，那么就会发现你再次在输入框中输入数据的时候，
 				 会同时改变下面的list的值，简易你们把初始化的代码去掉，运行下试试看！
 				 */
-			  inputItem: {
-          content: '',
-					finished: false,
-					deleted: false
-				},
-				isDel: '操作'
-			}
+		inputItem: {
+      content: '',
+		  finished: false,
+		  deleted: false
+		},
+		sDel: '操作'
+	  }
     },
     methods: {
       addItem: function () {
@@ -66,8 +68,6 @@
           finished: false,
           deleted: false
 				};
-
-
       },
       //改变选中状态
       changeState: function (index) {
@@ -77,12 +77,11 @@
   		    this.isDel = '删除'
         }else {
           this.isDel = '操作'
-			  }
-
-		  },
+	    	}
+      },
       //删除列表元素
       deleteItem: function (index) {
- //        console.log('true');
+ 				//        console.log('true');
 			  if (this.inputList[index].finished) {
 			    this.inputList.splice(index,1);
 			  }
@@ -136,7 +135,7 @@
   }
 	.native {
 		background: #e21826;
-	}
+	} 
   .empty{
     font-size: 18px;
     color: #b1b1b1;
