@@ -46,13 +46,13 @@
 
 				.name {
 					color: #8a8a8a;
-					font-size: 30px;
+					font-size: 40px;
 					font-weight:bold;
 					position: relative;
 					width: 260px;
 					position: absolute;
-					left:26% ;
-					top:28%;
+					left:20% ;
+					top:38%;
 					/*padding:0;*/
 				}
 				.name span {
@@ -60,6 +60,7 @@
 					display: inline-block;
 					padding:0;
 					margin-right: 10px;
+					
 				}
 				.name span:first-child {
 					font-size: 60px;
@@ -69,12 +70,51 @@
 			  .name span:nth-child(2) {
 					font-size: 30px;
 				}
+			  #start {
+					position: absolute;
+					left:30%;
+					top:54%;
+					width: 400px;
+					height: 90px;
+					background: #33d5aa;
+					border-radius: 4px;
+					border:transparent;
+					box-shadow: 2px 2px 5px #888888;
+					opacity:0;
+					color: #f5f5f5;
+					font-size: 30px;
+					z-index:100;
+				}
+			#end {
+				opacity:0;
+				position: absolute;
+				left:40%;
+				top:54%;
+				width: 400px;
+				height: 64px;
+				color: #898989;
+				font-size: 30px;
+			}
+			#end span {
+				display: inline-block;
+				vertical-align: top;
+				height: 64px;
+				line-height: 64px;
+			}
     </style>
 </head>
 
 <body style="background-color:#f0d6d7;height:100%;">
 <div class="name"><span>T</span><span>o:</span>小可爱</div>
-
+<button id="start">
+	<a href="#">
+		<div>小可爱点击这里～</div>
+	</a>
+</button>
+<p id="end">
+	<img src="heart.png" alt="爱心">
+	<span>我想你</span>
+</p>
 <div class="container">
     <!--<button>sdsf</button>-->
     <div class="text"></div>
@@ -95,21 +135,21 @@
             this.update = this.update.bind(this)
         }
         setText(newText) {
-            const oldText = this.el.innerText
+            const oldText = this.el.innerText;
             const length = Math.max(oldText.length, newText.length);
-            const promise = new Promise((resolve) => this.resolve = resolve)
-            this.queue = []
+            const promise = new Promise((resolve) => this.resolve = resolve);
+            this.queue = [];
             for (let i = 0; i < length; i++) {
-                const from = oldText[i] || ''
-                const to = newText[i] || ''
-                const start = Math.floor(Math.random() * 40)
-                const end = start + Math.floor(Math.random() * 40)
-                this.queue.push({ from, to, start, end })
+                const from = oldText[i] || '';
+                const to = newText[i] || '';
+                const start = Math.floor(Math.random() * 40);
+                const end = start + Math.floor(Math.random() * 40);
+                this.queue.push({ from, to, start, end });
             }
-            cancelAnimationFrame(this.frameRequest)
-            this.frame = 0
-            this.update()
-            return promise
+            cancelAnimationFrame(this.frameRequest);
+            this.frame = 0;
+            this.update();
+            return promise;
         }
         update() {
             let output = ''
@@ -177,25 +217,24 @@
       '我想你做我女朋友',
       '现在也想',
       '但是因为距离',
-      '你选择了另一个人',
-      '我希望你半年内不要和他发生关系',
-      '你答应我了',
-      '我是自私的',
+      '你做了选择',
+      '我想你半年和他保持距离',
+      '真高兴你能答应我',
+      '我很自私的',
       '我想一直对你好',
-			'我不想他对你好',
+			'但是希望他不是',
 			'而且',
-			'我还想通过啪啪啪让你离不开我',
-			'我想让你因为这个离不开我',
-			'如果白天对你好',
-			'晚上还能一起爽',
+			'想通过啪啪啪让你离不开我哈',
+			'（不许笑）',
+			'反正就是想你离不开我',
+			'当然，我也离不开你',
 			'那，你就我的小娘子了把～',
 			'我的小娘子',
 			'闻轩仪',
 			'我爱你~~',
-			'2019你要快乐～',
-			'但是快乐都是因为我',
-			'爱你～',
-
+			'你要快乐～',
+			'但是快乐最好都是因为我哈哈',
+			'情人节快乐',
     ];
 
     const el = document.querySelector('.text');
@@ -204,15 +243,13 @@
     let counter = 0;
     const next = () => {
         fx.setText(phrases[counter]).then(() => {
-            if(counter < 52){
+            if(counter <= 30){
                 setTimeout(next, 1200);
-                if (counter > 30) {
-                  setTimeout(next, 2000);
-								}
-            }
-            else {
+            }else if (counter > 30 && counter < 52) {
+              setTimeout(next, 2000);
+            } else {
+              	enter();
                 setTimeout(function(){console.log(0);},1200);
-//              enter();
 //              setTimeout(function(){alert(1);},1000);
             }
         });
@@ -223,18 +260,52 @@
 
 //        alert(1);
     };
+
     function enter(){
 
-      var start = document.getElementById('start');
-      var btn1 = document.createElement('button');
-      var a1 = document.createElement('a');
-      a1.href = "https://thomaszhou63.github.io/zhou_label/main.html";
-      a1.innerHTML = '进入网页';
-//      btn1.innerHTML = '进入网页';
-      btn1.appendChild(a1);
-//      start.appendChild(btn1);
-      document.body.appendChild(btn1);
-//      alert(1);
+      var btn = document.getElementById('start');
+      var end = document.getElementById('end');
+//			btn.style.opacity = 1;
+      show(btn);
+//      hide(btn);
+			btn.onclick = function() {
+        hide(btn);
+//        setTimeout( function(){ }, 3000 );
+        show(end);
+			};
+
+
+//      a1.href = "https://thomaszhou63.github.io/zhou_label/main.html";
+
+    }
+    var Fadeflag = true;
+    function show(obj) {
+      var num = 0;
+      if (Fadeflag) {
+        var st = setInterval(function(){
+          num++;
+          Fadeflag = false;
+          obj.style.opacity = num/10;
+          if (num>=10) {
+            clearInterval(st);
+            Fadeflag = true;
+          }
+        },30);
+      }
+    }
+    function hide(obj) {
+      var num = 10;
+      if (Fadeflag) {
+        var st = setInterval(function(){
+          num--;
+          Fadeflag = false;
+          obj.style.opacity = num/10;
+          if (num<=0) {
+            clearInterval(st);
+            Fadeflag = true;
+          }
+        },30);
+      }
     }
 
     next()
