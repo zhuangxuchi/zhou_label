@@ -231,10 +231,9 @@
 			'那，你就我的小娘子了把～',
 			'我的小娘子',
 			'闻轩仪',
-			'我爱你~~',
-			'你要快乐～',
-			'但是快乐最好都是因为我哈哈',
-			'情人节快乐',
+			'遇到你真好',
+			'真好～～',
+			'情人节快乐'
     ];
 
     const el = document.querySelector('.text');
@@ -245,7 +244,7 @@
         fx.setText(phrases[counter]).then(() => {
             if(counter <= 30){
                 setTimeout(next, 1200);
-            }else if (counter > 30 && counter < 52) {
+            }else if (counter > 30 && counter < 51) {
               setTimeout(next, 2000);
             } else {
               	enter();
