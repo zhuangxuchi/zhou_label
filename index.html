@@ -195,9 +195,10 @@
       '“博” 是第四声哈~',
       '可能，直到昨天晚上',
       '我们才知道对方的存在',
-      '我们那位美丽可爱的母亲大人',
+      '我们那两位可爱的母亲大人',
       '就这么在中间架了一座桥',
       '然后我们就是微信好友了',
+			'不管是什么认识的方式',
       '很开心  认识你',
     ];
 
@@ -207,8 +208,8 @@
     let counter = 0;
     const next = () => {
         fx.setText(phrases[counter]).then(() => {
-            if(counter <= 16){
-                setTimeout(next, 1200);
+            if(counter <= 17){
+                setTimeout(next, 1800);
             } else {
               	enter();
                 setTimeout(function(){console.log(0);},1200);
