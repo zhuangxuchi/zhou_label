@@ -1,313 +1,277 @@
 <!DOCTYPE html>
 <html>
 
-<head>
-    <meta charset="UTF-8">
-    <title></title>
-    <style>
-			* {
-				margin:0;
-				padding:0;
-			}
-        a{
-            list-style:none;
-            text-decoration: none;
-            font-weight:bold;
-            color: #8a8a8a;
-        }
-        a:hover{
-            border:transparent;
-            outline:none;
-        /*取消虚线框*/
-        }
-        html, body{
-            background-color: #f0d6d7;
-            height:100%;
-        }
-        .container{
-            padding:0;
-
-            position: absolute;
-            top: -30px;
-            height:100%;
-            width:100%;
-            justify-content:center;
-            align-items:center;
-            display:flex;}
-        .text{
-            /*文字*/
-            padding:0;
-            font-weight:bold;
-            font-size:50px;
-            color: #656565;
-        }
-        .dud{
-            color:#757575;}
-
-				.name {
-					color: #8a8a8a;
-					font-size: 40px;
-					font-weight:bold;
-					position: relative;
-					width: 260px;
-					position: absolute;
-					left:20% ;
-					top:38%;
-					/*padding:0;*/
-				}
-				.name span {
-					color: #8a8a8a;
-					display: inline-block;
-					padding:0;
-					margin-right: 10px;
-					
-				}
-				.name span:first-child {
-					font-size: 60px;
-					font-weight:bold;
-					/*display: inline-block;*/
-				}
-			  .name span:nth-child(2) {
-					font-size: 30px;
-				}
-			  #start {
-					position: absolute;
-					left:30%;
-					top:54%;
-					width: 400px;
-					height: 90px;
-					background: #33d5aa;
-					border-radius: 4px;
-					border:transparent;
-					box-shadow: 2px 2px 5px #888888;
-					opacity:0;
-					color: #f5f5f5;
-					font-size: 30px;
-					z-index:100;
-				}
-			#end {
-				opacity:0;
-				position: absolute;
-				left:40%;
-				top:54%;
-				width: 400px;
-				height: 64px;
-				color: #898989;
-				font-size: 30px;
-			}
-			#end span {
-				display: inline-block;
-				vertical-align: top;
-				height: 64px;
-				line-height: 64px;
-			}
-    </style>
-</head>
-
-<body style="background-color:#f0d6d7;height:100%;">
-<div class="name"><span>T</span><span>o:</span>小可爱</div>
-<button id="start">
-	<a href="#">
-		<div>小可爱点击这里～</div>
-	</a>
-</button>
-<p id="end">
-	<img src="heart.png" alt="爱心">
-	<span>我想你</span>
-</p>
-<div class="container">
-    <!--<button>sdsf</button>-->
-    <div class="text"></div>
-</div>
-
-
-
-
-<script>
-    // ——————————————————————————————————————————————————
-    // TextScramble
-    // ——————————————————————————————————————————————————
-
-    class TextScramble {
-        constructor(el) {
-            this.el = el
-            this.chars = '!<>-_\\/[]{}—=+*^?#________'
-            this.update = this.update.bind(this)
-        }
-        setText(newText) {
-            const oldText = this.el.innerText;
-            const length = Math.max(oldText.length, newText.length);
-            const promise = new Promise((resolve) => this.resolve = resolve);
-            this.queue = [];
-            for (let i = 0; i < length; i++) {
-                const from = oldText[i] || '';
-                const to = newText[i] || '';
-                const start = Math.floor(Math.random() * 40);
-                const end = start + Math.floor(Math.random() * 40);
-                this.queue.push({ from, to, start, end });
+    <head>
+        <meta charset="UTF-8">
+        <title></title>
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
             }
-            cancelAnimationFrame(this.frameRequest);
-            this.frame = 0;
-            this.update();
-            return promise;
-        }
-        update() {
-            let output = ''
-            let complete = 0
-            for (let i = 0, n = this.queue.length; i < n; i++) {
-                let { from, to, start, end, char } = this.queue[i]
-                if (this.frame >= end) {
-                    complete++
-                    output += to
-                } else if (this.frame >= start) {
-                    if (!char || Math.random() < 0.28) {
-                        char = this.randomChar()
-                        this.queue[i].char = char
+
+            a {
+                list-style: none;
+                text-decoration: none;
+                font-weight: bold;
+                color: #8a8a8a;
+            }
+
+            a:hover {
+                border: transparent;
+                outline: none;
+                /*取消虚线框*/
+            }
+
+            html,
+            body {
+                background-color: #f0d6d7;
+                height: 100%;
+            }
+
+            .container {
+                padding: 0;
+
+                position: absolute;
+                top: -30px;
+                height: 100%;
+                width: 100%;
+                justify-content: center;
+                align-items: center;
+                display: flex;
+            }
+
+            .text {
+                /*文字*/
+                padding: 0;
+                font-weight: bold;
+                font-size: 50px;
+                color: #656565;
+            }
+
+            .dud {
+                color: #757575;
+            }
+
+            .name {
+                color: #8a8a8a;
+                font-size: 40px;
+                font-weight: bold;
+                position: relative;
+                width: 260px;
+                position: absolute;
+                left: 20%;
+                top: 38%;
+                /*padding:0;*/
+            }
+
+            .name span {
+                color: #8a8a8a;
+                display: inline-block;
+                padding: 0;
+                margin-right: 10px;
+
+            }
+
+            .name span:first-child {
+                font-size: 60px;
+                font-weight: bold;
+                /*display: inline-block;*/
+            }
+
+            .name span:nth-child(2) {
+                font-size: 30px;
+            }
+
+            #start {
+                position: absolute;
+                left: 30%;
+                top: 54%;
+                width: 400px;
+                height: 90px;
+                background: #33d5aa;
+                border-radius: 4px;
+                border: transparent;
+                box-shadow: 2px 2px 5px #888888;
+                opacity: 0;
+                color: #f5f5f5;
+                font-size: 30px;
+                z-index: 100;
+            }
+
+            #end {
+                opacity: 0;
+                position: absolute;
+                left: 40%;
+                top: 54%;
+                width: 400px;
+                height: 64px;
+                color: #898989;
+                font-size: 30px;
+            }
+
+            #end span {
+                display: inline-block;
+                vertical-align: top;
+                height: 64px;
+                line-height: 64px;
+            }
+        </style>
+    </head>
+
+    <body style="background-color:#f0d6d7;height:100%;">
+        <div class="e"><span></span><span></span></div>
+        <button id="start">
+            <a href="#">
+                <div></div>
+            </a>
+        </button>
+        <p id="end">
+            <img src="heart.png" alt="">
+            <span></span>
+        </p>
+        <div class="container">
+            <!--<button>sdsf</button>-->
+            <div class="text"></div>
+        </div>
+
+
+
+
+        <script>
+            // ——————————————————————————————————————————————————
+            // TextScramble
+            // ——————————————————————————————————————————————————
+
+            class TextScramble {
+                constructor(el) {
+                    this.el = el
+                    this.chars = '!<>-_\\/[]{}—=+*^?#________'
+                    this.update = this.update.bind(this)
+                }
+                setText(newText) {
+                    const oldText = this.el.innerText;
+                    const length = Math.max(oldText.length, newText.length);
+                    const promise = new Promise((resolve) => this.resolve = resolve);
+                    this.queue = [];
+                    for (let i = 0; i < length; i++) {
+                        const from = oldText[i] || '';
+                        const to = newText[i] || '';
+                        const start = Math.floor(Math.random() * 40);
+                        const end = start + Math.floor(Math.random() * 40);
+                        this.queue.push({ from, to, start, end });
                     }
-                    output += `<span class="dud">${char}</span>`
-                } else {
-                    output += from
+                    cancelAnimationFrame(this.frameRequest);
+                    this.frame = 0;
+                    this.update();
+                    return promise;
+                }
+                update() {
+                    let output = ''
+                    let complete = 0
+                    for (let i = 0, n = this.queue.length; i < n; i++) {
+                        let { from, to, start, end, char } = this.queue[i]
+                        if (this.frame >= end) {
+                            complete++
+                            output += to
+                        } else if (this.frame >= start) {
+                            if (!char || Math.random() < 0.28) {
+                                char = this.randomChar()
+                                this.queue[i].char = char
+                            }
+                            output += `<span class="dud">${char}</span>`
+                        } else {
+                            output += from
+                        }
+                    }
+                    this.el.innerHTML = output
+                    if (complete === this.queue.length) {
+                        this.resolve()
+                    } else {
+                        this.frameRequest = requestAnimationFrame(this.update)
+                        this.frame++
+                    }
+                }
+                randomChar() {
+                    return this.chars[Math.floor(Math.random() * this.chars.length)]
                 }
             }
-            this.el.innerHTML = output
-            if (complete === this.queue.length) {
-                this.resolve()
-            } else {
-                this.frameRequest = requestAnimationFrame(this.update)
-                this.frame++
+
+            const phrases = [
+                //12-line
+            ];
+
+            const el = document.querySelector('.text');
+            const fx = new TextScramble(el);
+
+            let counter = 0;
+            const next = () => {
+                fx.setText(phrases[counter]).then(() => {
+                    if (counter <= 17) { // 多少行？？
+                        setTimeout(next, 1800);
+                    } else {
+                        enter();
+                        setTimeout(function () { console.log(0); }, 1200);
+                        //              setTimeout(function(){alert(1);},1000);
+                    }
+                });
+                //        counter = (counter + 1) % phrases.length
+                //        if(counter < 2) {
+                counter = counter + 1;
+                //        }
+
+                //        alert(1);
+            };
+
+            function enter() {
+
+                var btn = document.getElementById('start');
+                var end = document.getElementById('end');
+                //			btn.style.opacity = 1;
+                show(btn);
+                //      hide(btn);
+                btn.onclick = function () {
+                    hide(btn);
+                    //        setTimeout( function(){ }, 3000 );
+                    show(end);
+                };
+
+
+                //      a1.href = "https://thomaszhou63.github.io/zhou_label/main.html";
+
             }
-        }
-        randomChar() {
-            return this.chars[Math.floor(Math.random() * this.chars.length)]
-        }
-    }
-
-    const phrases = [
-      '呐',
-      '这是啥呢？',
-      '这是我为你写的一个小东西',
-      '没有图片',
-      '没有视频',
-      '只有文字',
-      '包含了我想对你说的一些话',
-      'em。。。。',
-      '那我开始了哈',
-      '小可爱',
-      '刚和你认识的时候呢',
-      '就聊的很投机',
-      '然后就聊呀聊呀～',
-      '然后嘞～我们就见面了',
-      '而且是在你家',
-      '话说，你这个家伙是不是没有防备心啊',
-      '这么轻易让一个陌生男人来你家',
-      '怕是真的是一个小傻子～',
-      '还记得第一次见你的样子',
-      '真好看～～～',
-      '虽然你一直低着头',
-      '不敢正面看我',
-      '其实。。',
-      '跟你说句实话吧',
-			'',
-			'',
-      '紧张我会说什么吗？？？',
-      '哈哈哈哈',
-			'那我说了哈！',
-      '我就是喜欢这个小姑娘！',
-      '（接下来很污，高能预警！！污污污污污）',
-      '我想你做我女朋友',
-      '现在也想',
-      '但是因为距离',
-      '你做了选择',
-      '我想你半年和他保持距离',
-      '真高兴你能答应我',
-      '我很自私的',
-      '我想一直对你好',
-			'但是希望他不是',
-			'而且',
-			'想通过啪啪啪让你离不开我哈',
-			'（不许笑）',
-			'反正就是想你离不开我',
-			'当然，我也离不开你',
-			'那，你就我的小娘子了把～',
-			'我的小娘子',
-			'闻轩仪',
-			'遇到你真好',
-			'真好～～',
-			'情人节快乐'
-    ];
-
-    const el = document.querySelector('.text');
-    const fx = new TextScramble(el);
-
-    let counter = 0;
-    const next = () => {
-        fx.setText(phrases[counter]).then(() => {
-            if(counter <= 30){
-                setTimeout(next, 1200);
-            }else if (counter > 30 && counter < 51) {
-              setTimeout(next, 2000);
-            } else {
-              	enter();
-                setTimeout(function(){console.log(0);},1200);
-//              setTimeout(function(){alert(1);},1000);
+            var Fadeflag = true;
+            function show(obj) {
+                var num = 0;
+                if (Fadeflag) {
+                    var st = setInterval(function () {
+                        num++;
+                        Fadeflag = false;
+                        obj.style.opacity = num / 10;
+                        if (num >= 10) {
+                            clearInterval(st);
+                            Fadeflag = true;
+                        }
+                    }, 30);
+                }
             }
-        });
-//        counter = (counter + 1) % phrases.length
-//        if(counter < 2) {
-            counter = counter + 1;
-//        }
+            function hide(obj) {
+                var num = 10;
+                if (Fadeflag) {
+                    var st = setInterval(function () {
+                        num--;
+                        Fadeflag = false;
+                        obj.style.opacity = num / 10;
+                        if (num <= 0) {
+                            clearInterval(st);
+                            Fadeflag = true;
+                        }
+                    }, 30);
+                }
+            }
 
-//        alert(1);
-    };
+            next()
+        </script>
+    </body>
 
-    function enter(){
-
-      var btn = document.getElementById('start');
-      var end = document.getElementById('end');
-//			btn.style.opacity = 1;
-      show(btn);
-//      hide(btn);
-			btn.onclick = function() {
-        hide(btn);
-//        setTimeout( function(){ }, 3000 );
-        show(end);
-			};
-
-
-//      a1.href = "https://thomaszhou63.github.io/zhou_label/main.html";
-
-    }
-    var Fadeflag = true;
-    function show(obj) {
-      var num = 0;
-      if (Fadeflag) {
-        var st = setInterval(function(){
-          num++;
-          Fadeflag = false;
-          obj.style.opacity = num/10;
-          if (num>=10) {
-            clearInterval(st);
-            Fadeflag = true;
-          }
-        },30);
-      }
-    }
-    function hide(obj) {
-      var num = 10;
-      if (Fadeflag) {
-        var st = setInterval(function(){
-          num--;
-          Fadeflag = false;
-          obj.style.opacity = num/10;
-          if (num<=0) {
-            clearInterval(st);
-            Fadeflag = true;
-          }
-        },30);
-      }
-    }
-
-    next()
-</script>
-</body>
 </html>
