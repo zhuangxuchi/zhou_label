@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <link rel="stylesheet" href="animate.css">
+    <title></title>
+    <style type="text/css">
+      #div1 {
+        width: 800px;
+        height: 600px;
+        background-color: rgb(155, 155, 145);
+        position: absolute;
+      }
+
+      .imgRotate {
+        width: 100px;
+        height: 80px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin: -40px 0 0 -50px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="div1">
+      <h1 class="animated infinite heartBeat">Example</h1>
+
+    </div>
+  </body>
+  <script type="text/javascript" src="jquery.min.js"></script>
+  <script type="text/javascript" src="jQueryRotate.js"></script>
+  <script type="text/javascript">
+    var num = 0;
+    $("#input2").click(function () {
+      num++;
+      $("#img1").rotate(90 * num);
+    });
+  </script>
+
+</html>
